@@ -1,12 +1,33 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { IProducts } from './IProducts';
 
 @Component({
   selector: "pm-products",
-  templateUrl: "./product-list.component.html"
+  templateUrl: "./product-list.component.html",
+  styles: ["thead {color: #337AB7;}"]
 })
-export default class ProductListComponent {
+export default class ProductListComponent implements OnInit {
   pageTitle: string = "Product List";
-  products: any[] = [
+  showImage: boolean = false;
+  _listFilter: string = "";
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.products;
+  }
+
+  constructor() {
+    this.filteredProducts = this.products;
+  }
+
+  filteredProducts: IProducts[];
+  products: IProducts[] = [
     {
       productId: 1,
       productName: "Leaf Rake",
@@ -58,4 +79,19 @@ export default class ProductListComponent {
       imageUrl: "assets/images/xbox-controller.png"
     }
   ];
+
+  toggleImage() {
+    console.log("click show image");
+    this.showImage = !this.showImage;
+  }
+
+  performFilter(term: string): IProducts[] {
+    console.log("two way binding");
+    term = term.toLocaleLowerCase();
+    return this.products.filter((product: IProducts) => product.productName.toLocaleLowerCase().indexOf(term) !== -1);
+  }
+
+  ngOnInit() {
+    console.log("OnInit");
+  }
 }
