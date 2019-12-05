@@ -14,6 +14,7 @@ export default class starComponent {
   @Input()
   set rating(rating: number) {
     this._starWidth = (rating / 5) * 75;
+    this._rating = rating;
   }
   set starWidth(value: number) {
     this._starWidth = value;
