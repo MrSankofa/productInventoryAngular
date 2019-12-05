@@ -38,8 +38,20 @@ export class ProductListComponent implements OnInit {
       imageUrl: "assets/images/hammer.png"
     }
   ];
+  _listFilter: string = "";
 
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter
+      ? this.filterProducts(this.listFilter)
+      : this.products;
+  }
   showImage: boolean = false;
+  filteredProducts: IProduct[] = this.products;
 
   toggleShowImage() {
     this.showImage = !this.showImage;
@@ -47,5 +59,13 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     console.log("test");
+  }
+
+  filterProducts(term: string): IProduct[] {
+    term = term.toLocaleLowerCase();
+    return this.products.filter(
+      (product: IProduct) =>
+        product.productName.toLocaleLowerCase().indexOf(term) !== -1
+    );
   }
 }

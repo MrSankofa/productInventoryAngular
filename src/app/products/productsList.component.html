@@ -5,7 +5,10 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-6">
-        <h4>Filtered by:</h4>
+        <h4>Filtered by: {{ listFilter }}</h4>
+        <div class="col-md-4">
+          <input type="text" [(ngModel)]="listFilter" />
+        </div>
       </div>
     </div>
     <div class="table-responsive">
@@ -25,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products">
+          <tr *ngFor="let product of filteredProducts">
             <td>
               <img
                 src="{{ product.imageUrl }}"
@@ -34,7 +37,7 @@
                 *ngIf="showImage"
               />
             </td>
-            
+
             <td>
               {{ product.productName }}
             </td>
