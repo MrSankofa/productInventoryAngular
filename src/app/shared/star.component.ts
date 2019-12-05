@@ -26,11 +26,7 @@ export default class starComponent {
   }
 
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
-
-  //   onClick(): void {
-  //     this.showRating.emit(`${this.productName}'s rating is: ${this.rating}`);
-  //   }
-
+  
   onClick(): void {
     this.notify.emit(`${this.productName} product rating is ${this.rating}`);
   }
