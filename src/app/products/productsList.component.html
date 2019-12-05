@@ -1,6 +1,6 @@
 <div class="card">
-  <div class="card-header">
-    Featured
+  <div class="card-header" (showRating)="onShowRating($event)">
+    {{ showThisRating }}
   </div>
   <div class="card-body">
     <div class="row">
@@ -48,8 +48,11 @@
               {{ product.price }}
             </td>
             <td>
-              
-              <pm-star rating="{{product.starRating}}"></pm-star>
+              <pm-star
+                rating="{{ product.starRating }}"
+                productName="{{ product.productName }}"
+                (notify)="onNotify($event)"
+              ></pm-star>
             </td>
           </tr>
         </tbody>

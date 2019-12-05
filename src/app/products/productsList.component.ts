@@ -39,6 +39,7 @@ export class ProductListComponent implements OnInit {
     }
   ];
   _listFilter: string = "";
+  showThisRating: string;
 
   get listFilter(): string {
     return this._listFilter;
@@ -67,5 +68,9 @@ export class ProductListComponent implements OnInit {
       (product: IProduct) =>
         product.productName.toLocaleLowerCase().indexOf(term) !== -1
     );
+  }
+
+  onNotify(message: string): void {
+    this.showThisRating = message;
   }
 }

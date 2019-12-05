@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "pm-star",
@@ -8,6 +8,8 @@ import { Component, Input, OnChanges } from "@angular/core";
 export default class starComponent {
   private _starWidth: number;
   private _rating: number;
+  @Input() productName: string;
+
   get rating(): number {
     return this._rating;
   }
@@ -21,5 +23,15 @@ export default class starComponent {
   }
   get starWidth(): number {
     return this._starWidth;
+  }
+
+  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+
+  //   onClick(): void {
+  //     this.showRating.emit(`${this.productName}'s rating is: ${this.rating}`);
+  //   }
+
+  onClick(): void {
+    this.notify.emit(`${this.productName} product rating is ${this.rating}`);
   }
 }
