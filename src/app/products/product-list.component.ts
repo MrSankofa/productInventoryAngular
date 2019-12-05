@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { IProducts } from './IProducts';
+import { IProducts } from "./IProducts";
+import { IProductData } from "../shared/IProductData";
 
 @Component({
   selector: "pm-products",
@@ -9,7 +10,7 @@ import { IProducts } from './IProducts';
 export default class ProductListComponent implements OnInit {
   pageTitle: string = "Product List";
   showImage: boolean = false;
-  _listFilter: string = "";
+  private _listFilter: string = "";
 
   get listFilter(): string {
     return this._listFilter;
@@ -88,10 +89,22 @@ export default class ProductListComponent implements OnInit {
   performFilter(term: string): IProducts[] {
     console.log("two way binding");
     term = term.toLocaleLowerCase();
-    return this.products.filter((product: IProducts) => product.productName.toLocaleLowerCase().indexOf(term) !== -1);
+    return this.products.filter(
+      (product: IProducts) =>
+        product.productName.toLocaleLowerCase().indexOf(term) !== -1
+    );
   }
 
   ngOnInit() {
     console.log("OnInit");
+  }
+
+  onNotify(message: IProductData): void {
+    console.log("message:", message);
+    this.pageTitle =
+      message.productName +
+      " Rating is " +
+      message.starRating +
+      " out of 5 stars.";
   }
 }
