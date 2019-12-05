@@ -13,7 +13,7 @@
       <table class="table table-light" *ngIf="products && products.length">
         <thead>
           <tr>
-            <th><button class="btn btn-primary"></button></th>
+            <th><button class="btn btn-primary" (click)="toggleShowImage()"> {{ showImage ? "hide" : "show" }} image</button></th>
             <th>Product Image</th>
             <th>Product Name</th>
             <th>Release Date</th>

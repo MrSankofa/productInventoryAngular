@@ -39,6 +39,12 @@ export class ProductListComponent implements OnInit {
     }
   ];
 
+  showImage: boolean = false;
+
+  toggleShowImage() {
+    this.showImage = !this.showImage;
+  }
+
   ngOnInit() {
     console.log("test");
   }
