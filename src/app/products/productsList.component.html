@@ -3,7 +3,7 @@
     Featured
   </div>
   <div class="card-body table-responsive">
-    <table class="table table-striped table-hover " *ngIf="products && products.length">
+    <table class="table table-hover " *ngIf="products && products.length">
       <thead>
         <tr>
           <button class="btn btn-primary" (click)="toggleImage()"> {{showImage ? "Hide" : "Show"}} Image</button>
@@ -13,21 +13,15 @@
           <th>Star Rating</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let product of products">
         <tr>
-          <td></td>
-          <td>leaf</td>
-          <td>leaf</td>
-          <td>leaf</td>
-          <td>leaf</td>
+          <td><img src="{{product.imageUrl}}" alt="{{product.productName}}" style="width: 50px;"></td>
+          <td>{{product.productName}}</td>
+          <td>{{product.releaseDate}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.starRating}}</td>
         </tr>
-        <tr>
-            <td></td>
-            <td>leaf</td>
-            <td>leaf</td>
-            <td>leaf</td>
-            <td>leaf</td>
-          </tr>
+        
       </tbody>
     </table>
   </div>
