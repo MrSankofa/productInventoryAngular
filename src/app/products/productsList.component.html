@@ -15,7 +15,7 @@
       </thead>
       <tbody *ngFor="let product of products">
         <tr>
-          <td><img src="{{product.imageUrl}}" alt="{{product.productName}}" style="width: 50px;"></td>
+          <td><img src="{{product.imageUrl}}" alt="{{product.productName}}" style="width: 50px;" *ngIf="showImage"></td>
           <td>{{product.productName}}</td>
           <td>{{product.releaseDate}}</td>
           <td>{{product.price}}</td>
