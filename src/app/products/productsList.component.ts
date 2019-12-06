@@ -39,8 +39,27 @@ export class ProductListComponent {
     }
   ];
   showImage: boolean = false;
-  listFilter: string = "";
+  _listFilter: string = "";
+  filteredProducts: IProduct[];
 
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.products;
+  }
+
+  performFilter(term: string): IProduct[] {
+    term = term.toLocaleLowerCase();
+    return this.products.filter(
+      (product: IProduct) =>
+        product.productName.toLocaleLowerCase().indexOf(term) !== -1
+    );
+  }
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
