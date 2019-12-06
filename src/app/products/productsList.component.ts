@@ -1,11 +1,17 @@
 import { Component } from "@angular/core";
 import IProduct from "../shared/IProduct";
+import { ProductService } from "./product.service";
 
 @Component({
   selector: "pm-product-list",
   templateUrl: "./productsList.component.html"
 })
 export class ProductListComponent {
+  private _productService;
+  constructor(productService: ProductService) {
+    this._productService = productService;
+  }
+
   products: IProduct[] = [
     {
       productId: 1,
