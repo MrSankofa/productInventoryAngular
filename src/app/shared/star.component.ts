@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output } from "@angular/core";
 
 @Component({
   selector: "pm-star",
@@ -19,5 +19,11 @@ export class StarComponent {
   @Input()
   set rating(value: number) {
     this._rating = value;
+  }
+
+  @Output()
+
+  onClick(): void {
+    console.log("clicked");
   }
 }
