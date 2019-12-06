@@ -4,7 +4,7 @@ import IProduct from "../shared/IProduct";
 @Injectable({
   providedIn: "root"
 })
-export class ProductService {
+export default class ProductService {
   getProducts(): IProduct[] {
     return [
       {
