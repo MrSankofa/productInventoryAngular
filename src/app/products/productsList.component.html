@@ -4,9 +4,9 @@
   </div>
   <div class="card-body table-responsive">
     <div>
-      Search By: 
+      Search for: {{ listFilter}}
     </div>
-    <input type="text">
+    <input type="text" [(ngModel)]="listFilter">
     <table class="table table-hover " *ngIf="products && products.length">
       <thead>
         <tr>
