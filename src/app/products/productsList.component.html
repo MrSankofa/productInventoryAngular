@@ -1,16 +1,16 @@
 <div class="card">
   <div class="card-header">
-    Featured
+    {{ showRating }}
   </div>
   <div class="card-body table-responsive">
-    <div>
-      Search for: {{ listFilter}}
-    </div>
-    <input type="text" [(ngModel)]="listFilter">
+    <div>Search for: {{ listFilter }}</div>
+    <input type="text" [(ngModel)]="listFilter" />
     <table class="table table-hover " *ngIf="products && products.length">
       <thead>
         <tr>
-          <button class="btn btn-primary" (click)="toggleImage()"> {{showImage ? "Hide" : "Show"}} Image</button>
+          <button class="btn btn-primary" (click)="toggleImage()">
+            {{ showImage ? "Hide" : "Show" }} Image
+          </button>
           <th>Product Name</th>
           <th>Release Date</th>
           <th>Price</th>
@@ -19,13 +19,25 @@
       </thead>
       <tbody *ngFor="let product of filteredProducts">
         <tr>
-          <td><img src="{{product.imageUrl}}" alt="{{product.productName}}" style="width: 50px;" *ngIf="showImage"></td>
-          <td>{{product.productName}}</td>
-          <td>{{product.releaseDate}}</td>
-          <td>{{product.price}}</td>
-          <td><pm-star [rating]="product.starRating"></pm-star></td>
+          <td>
+            <img
+              src="{{ product.imageUrl }}"
+              alt="{{ product.productName }}"
+              style="width: 50px;"
+              *ngIf="showImage"
+            />
+          </td>
+          <td>{{ product.productName }}</td>
+          <td>{{ product.releaseDate }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <pm-star
+              [rating]="product.starRating"
+              [productName]="product.productName"
+              (notify)="onNotify($event)"
+            ></pm-star>
+          </td>
         </tr>
-        
       </tbody>
     </table>
   </div>

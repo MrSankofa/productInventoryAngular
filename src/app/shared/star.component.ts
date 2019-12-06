@@ -1,4 +1,4 @@
-import { Component, Input, Output } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "pm-star",
@@ -8,6 +8,7 @@ import { Component, Input, Output } from "@angular/core";
 export class StarComponent {
   _starWidth: number;
   _rating: number;
+  @Input() productName: string;
 
   get starWidth(): number {
     return (this._rating / 5) * 75;
@@ -21,9 +22,10 @@ export class StarComponent {
     this._rating = value;
   }
 
-  @Output()
+  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
   onClick(): void {
     console.log("clicked");
+    this.notify.emit(`${this.productName} product rating is ${this.rating}`);
   }
 }

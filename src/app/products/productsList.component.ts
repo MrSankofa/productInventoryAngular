@@ -40,7 +40,8 @@ export class ProductListComponent {
   ];
   showImage: boolean = false;
   _listFilter: string = "";
-  filteredProducts: IProduct[];
+  filteredProducts: IProduct[] = this.products;
+  showRating: string;
 
   get listFilter(): string {
     return this._listFilter;
@@ -62,5 +63,9 @@ export class ProductListComponent {
   }
   toggleImage(): void {
     this.showImage = !this.showImage;
+  }
+
+  onNotify(message: string) {
+    this.showRating = message;
   }
 }
