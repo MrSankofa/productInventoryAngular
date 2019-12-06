@@ -10,11 +10,7 @@ export class StarComponent {
   _rating: number;
 
   get starWidth(): number {
-    return this._starWidth;
-  }
-
-  set starWidth(value: number) {
-    this._starWidth = value;
+    return (this._rating / 5) * 75;
   }
 
   get rating(): number {
