@@ -8,10 +8,10 @@ import ProductService from "./product.service";
   selector: "pm-product-list"
 })
 export class ProductListComponent {
-  // private _productService;
-  // constructor(productService: ProductService) {
-  //   this._productService = productService;
-  // }
+  private _productService;
+  constructor(productService: ProductService) {
+    this._productService = productService;
+  }
 
   products: IProduct[] = [
     {
@@ -49,6 +49,7 @@ export class ProductListComponent {
   showImage: boolean = false;
   _listFilter: string = "";
   filteredProducts: IProduct[] = this.products;
+  errorMessage: string;
 
   get listFilter(): string {
     return this._listFilter;
@@ -69,14 +70,14 @@ export class ProductListComponent {
     this.showImage = !this.showImage;
   }
 
-  // ngOnInit() {
-  //   this._productService.getProducts().subscribe({
-  //     next: products => {
-  //       this.products = products;
-  //       this.filteredProducts = this.products;
-  //     },
-  //     error: err => (this.errorMessage = err)
-  //   });
-    // this.products = this._productService.getProducts();
-  // }
+  ngOnInit() {
+    this._productService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => (this.errorMessage = err)
+    });
+    this.products = this._productService.getProducts();
+  }
 }
