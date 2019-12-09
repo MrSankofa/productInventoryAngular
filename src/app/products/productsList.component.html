@@ -1,6 +1,10 @@
 <div class="card">
   <div class="card-header">
-    Featured
+    Searching for: {{listFilter}}
+  </div>
+  <div style="margin: 0 auto; width: 20%;">
+    <label for="search">Enter: </label>
+    <input type="text" [(ngModel)]="listFilter" style="width: 100px;">
   </div>
   <div class="card-body">
     <table class="table" *ngIf="products && products.length">
