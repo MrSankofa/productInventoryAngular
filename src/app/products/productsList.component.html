@@ -3,10 +3,19 @@
     Featured
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <button class="btn btn-primary" (click)=toggleImage()>{{showImage ? "hide" : "show"}} Image</button>
+          <th>Product</th>
+          <th>Available</th>
+          <th>Price</th>
+          <th>5 Star Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
   </div>
 </div>
