@@ -1,11 +1,18 @@
 import { Component } from "@angular/core";
 import IProduct from "./IProduct";
 
+import ProductService from "./product.service";
+
 @Component({
   templateUrl: "./productsList.component.html",
   selector: "pm-product-list"
 })
 export class ProductListComponent {
+  // private _productService;
+  // constructor(productService: ProductService) {
+  //   this._productService = productService;
+  // }
+
   products: IProduct[] = [
     {
       productId: 1,
@@ -61,4 +68,15 @@ export class ProductListComponent {
   toggleImage() {
     this.showImage = !this.showImage;
   }
+
+  // ngOnInit() {
+  //   this._productService.getProducts().subscribe({
+  //     next: products => {
+  //       this.products = products;
+  //       this.filteredProducts = this.products;
+  //     },
+  //     error: err => (this.errorMessage = err)
+  //   });
+    // this.products = this._productService.getProducts();
+  // }
 }

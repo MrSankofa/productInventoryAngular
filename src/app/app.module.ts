@@ -7,8 +7,8 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, HttpClientModule],
   declarations: [AppComponent, ProductListComponent],
+  imports: [BrowserModule, FormsModule, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
