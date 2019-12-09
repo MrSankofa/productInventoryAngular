@@ -1,5 +1,9 @@
-import IProduct from "../shared/IProduct";
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import IProduct from "./IProduct";
+
 @Injectable({
   providedIn: "root"
 })
@@ -18,6 +22,7 @@ export default class ProductService {
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote loggin infrastructure
     // instead of just loggin it to the console
+
     let errorMessage = "";
     if (err.error instanceof ErrorEvent) {
       // a client-side or network error occurred.
@@ -27,6 +32,7 @@ export default class ProductService {
       // The response body may contain clues as to what went wrong,
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
+
     console.error(errorMessage);
     return throwError(errorMessage);
   }
