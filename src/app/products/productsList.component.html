@@ -3,7 +3,7 @@
     Featured
   </div>
   <div class="card-body">
-    <table class="table">
+    <table class="table" *ngIf="products && products.length">
       <thead>
         <tr>
           <button class="btn btn-primary" (click)=toggleImage()>{{showImage ? "hide" : "show"}} Image</button>
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        
+
       </tbody>
     </table>
   </div>
