@@ -13,8 +13,14 @@
           <th>5 Star Rating</th>
         </tr>
       </thead>
-      <tbody>
-
+      <tbody *ngFor="let product of products">
+        <tr>
+          <img src="{{product.imageUrl}}" alt="{{product.productName}}" style="width: 50px;">
+          <td>{{product.productName}}</td>
+          <td>{{product.releaseDate}}</td>
+          <td>{{product.price | currency}}</td>
+          <td>{{product.starRating}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
