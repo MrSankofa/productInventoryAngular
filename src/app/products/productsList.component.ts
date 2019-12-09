@@ -40,7 +40,23 @@ export class ProductListComponent {
   ];
 
   showImage: boolean = false;
-  listFilter: string = "";
+  _listFilter: string = "";
+  filteredProducts: IProduct[] = this.products;
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    value = value.toLocaleLowerCase();
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter
+      ? this.products.filter(
+          (product: IProduct) =>
+            product.productName.toLocaleLowerCase().indexOf(value) !== -1
+        )
+      : this.products;
+  }
 
   toggleImage() {
     this.showImage = !this.showImage;
