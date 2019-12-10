@@ -50,4 +50,15 @@ describe("Product List Component", () => {
     fixture.detectChanges();
     expect(PLComponent.showImage).toEqual(true);
   });
+
+  it("should hide table if there are no products", () => {
+    const PLComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    const complied = fixture.debugElement.nativeElement;
+
+    PLComponent.products = [];
+    fixture.detectChanges();
+
+    expect(complied.querySelector("table")).toBeNull();
+  });
 });
