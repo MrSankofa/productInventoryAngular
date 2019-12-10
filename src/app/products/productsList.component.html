@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">Featured Product: {{ listFilter }}</div>
+  <div class="card-body">
+    <label for="search">Search for Product: </label>
+    <input type="text" [(ngModel)]="listFilter" />
+
+    <table class="table" *ngIf="products && products.length">
+      <thead>
+        <tr>
+          <button class="btn btn-primary" (click)="toggleShowImage()">
+            {{ showImage ? "Hide" : "Show" }} Image
+          </button>
+          <th>Product</th>
+          <th>Available</th>
+          <th>Price</th>
+          <th>5 Star Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of filteredProducts">
+          <td>
+            <img
+              src="{{ product.imageUrl }}"
+              alt="{{ product.productName }}"
+              class="productImages"
+              *ngIf="showImage"
+            />
+          </td>
+          <td class="products">{{ product.productName }}</td>
+          <td class="products">{{ product.releaseDate }}</td>
+          <td class="products">{{ product.price }}</td>
+          <td class="products">{{ product.starRating }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
