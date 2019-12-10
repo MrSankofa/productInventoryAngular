@@ -6,4 +6,8 @@ import { Component } from "@angular/core";
 })
 export class ProductListComponent {
   showImage = false;
+
+  toggleShowImage() {
+    this.showImage = !this.showImage;
+  }
 }

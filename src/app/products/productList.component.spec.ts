@@ -26,6 +26,7 @@ describe("Product List Component", () => {
     const PLComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
+    console.log("compiled:", compiled);
 
     const resultFalse = compiled.querySelector("button").textContent;
     console.log("PLComponent:", PLComponent);
@@ -33,11 +34,20 @@ describe("Product List Component", () => {
 
     PLComponent.showImage = true;
     console.log("PLComponent:", PLComponent);
-    fixture.detectChanges();
+    fixture.detectChanges(); // very necessary
     const resultTrue = compiled.querySelector("button").textContent;
     console.log("result:", resultTrue);
 
-    expect(resultFalse).toEqual("Show Image");
-    expect(resultTrue).toEqual("Hide Image");
+    expect(resultFalse).toContain("Show Image");
+    expect(resultTrue).toContain("Hide Image");
+  });
+
+  it("should toggle showImage value on button click", () => {
+    const PLComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    compiled.querySelector("button").click();
+    fixture.detectChanges();
+    expect(PLComponent.showImage).toEqual(true);
   });
 });
