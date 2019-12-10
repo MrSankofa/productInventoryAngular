@@ -31,10 +31,10 @@ export default class ProductService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+      console.error(errorMessage);
+      return throwError(errorMessage);
     }
 
-    console.error(errorMessage);
-    return throwError(errorMessage);
   }
 }
 

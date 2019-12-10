@@ -73,6 +73,7 @@ export class ProductListComponent {
   ngOnInit() {
     this._productService.getProducts().subscribe({
       next: products => {
+        console.log("products:", products);
         this.products = products;
         this.filteredProducts = this.products;
       },
