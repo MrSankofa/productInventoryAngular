@@ -7,7 +7,6 @@ import IProduct from "./IProduct";
   styleUrls: ["./productList.component.css"]
 })
 export class ProductListComponent {
-  showImage = false;
   products: IProduct[] = [
     {
       productId: 5,
@@ -40,6 +39,23 @@ export class ProductListComponent {
       imageUrl: "assets/images/xbox-controller.png"
     }
   ];
+  showImage = false;
+  filteredProducts: IProduct[] = this.products;
+  _listFilter = "";
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter
+      ? this.products.filter(
+          (product: IProduct) =>
+            product.productName.indexOf(this.listFilter) !== -1
+        )
+      : this.products;
+  }
 
   toggleShowImage() {
     this.showImage = !this.showImage;

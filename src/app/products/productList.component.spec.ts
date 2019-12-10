@@ -1,10 +1,14 @@
 import { ProductListComponent } from "./productsList.component";
 import { async, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+const productsAPI = require("../../api/products/products.json");
+
 describe("Product List Component", () => {
   let fixture;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductListComponent]
+      declarations: [ProductListComponent],
+      imports: [FormsModule]
     }).compileComponents();
     fixture = TestBed.createComponent(ProductListComponent);
   }));
@@ -26,17 +30,17 @@ describe("Product List Component", () => {
     const PLComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    console.log("compiled:", compiled);
+    // console.log("compiled:", compiled);
 
     const resultFalse = compiled.querySelector("button").textContent;
-    console.log("PLComponent:", PLComponent);
-    console.log("result:", resultFalse);
+    // console.log("PLComponent:", PLComponent);
+    // console.log("result:", resultFalse);
 
     PLComponent.showImage = true;
-    console.log("PLComponent:", PLComponent);
+    // console.log("PLComponent:", PLComponent);
     fixture.detectChanges(); // very necessary
     const resultTrue = compiled.querySelector("button").textContent;
-    console.log("result:", resultTrue);
+    // console.log("result:", resultTrue);
 
     expect(resultFalse).toContain("Show Image");
     expect(resultTrue).toContain("Hide Image");
@@ -73,12 +77,12 @@ describe("Product List Component", () => {
 
     const list = compiled.querySelector("tbody").children;
     const lenOfElements = compiled.querySelector("tbody").children.length;
-    console.log(
-      'compiled.querySelector("tbody").children:',
-      compiled.querySelector("tbody").children
-    );
+    // console.log(
+    //   'compiled.querySelector("tbody").children:',
+    //   compiled.querySelector("tbody").children
+    // );
 
-    console.log("list[0].innerText:", list[0].innerText);
+    // console.log("list[0].innerText:", list[0].innerText);
     expect(lenOfElements).toEqual(PLComponent.products.length);
     expect(list[0].innerText).toContain("Hammer	May 21, 2019");
   });
@@ -96,5 +100,22 @@ describe("Product List Component", () => {
 
     expect(shouldBeNull).toBeNull();
     expect(shouldBeTruthy).toBeTruthy();
+  });
+
+  it("should filter products based on search", () => {
+    const PLComponent = fixture.debugElement.componentInstance;
+    PLComponent.products = productsAPI;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    // when the listFilter's value is am => hammer should come up
+    PLComponent.listFilter = "am";
+    fixture.detectChanges();
+    const products = compiled.querySelector(".products");
+    const children = compiled.querySelector("tbody").children;
+    console.log("products:", products);
+    console.log("children:", children);
+    expect(children.length).toEqual(2);
+    // could be more thoroughly tested if you check that it's only the hammer and video game controller
   });
 });
