@@ -3,7 +3,8 @@ import IProduct from "./IProduct";
 
 @Component({
   selector: "pm-product-list",
-  templateUrl: "./productsList.component.html"
+  templateUrl: "./productsList.component.html",
+  styleUrls: ["./productList.component.css"]
 })
 export class ProductListComponent {
   showImage = false;

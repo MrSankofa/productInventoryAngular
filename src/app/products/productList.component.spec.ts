@@ -54,11 +54,47 @@ describe("Product List Component", () => {
   it("should hide table if there are no products", () => {
     const PLComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
-    const complied = fixture.debugElement.nativeElement;
+    const compiled = fixture.debugElement.nativeElement;
 
     PLComponent.products = [];
     fixture.detectChanges();
 
-    expect(complied.querySelector("table")).toBeNull();
+    expect(compiled.querySelector("table")).toBeNull();
+  });
+
+  // You will need to update this test based on the products given to us from the server.
+  // we want to check for bugs in our actual code
+  // including the 5 star rating would make this test brittle
+  // along with the price
+  it("should render the list of products if given correct data (emphasis on if given)", () => {
+    const PLComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    const list = compiled.querySelector("tbody").children;
+    const lenOfElements = compiled.querySelector("tbody").children.length;
+    console.log(
+      'compiled.querySelector("tbody").children:',
+      compiled.querySelector("tbody").children
+    );
+
+    console.log("list[0].innerText:", list[0].innerText);
+    expect(lenOfElements).toEqual(PLComponent.products.length);
+    expect(list[0].innerText).toContain("Hammer	May 21, 2019");
+  });
+
+  it("should show and hide images on button click", () => {
+    const PLComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    const button = compiled.querySelector("button");
+    const shouldBeNull = compiled.querySelector(".productImages");
+
+    button.click();
+    fixture.detectChanges();
+    const shouldBeTruthy = compiled.querySelector(".productImages");
+
+    expect(shouldBeNull).toBeNull();
+    expect(shouldBeTruthy).toBeTruthy();
   });
 });
