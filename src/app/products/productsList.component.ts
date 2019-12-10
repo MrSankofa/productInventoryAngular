@@ -4,4 +4,6 @@ import { Component } from "@angular/core";
   selector: "pm-product-list",
   templateUrl: "./productsList.component.html"
 })
-export class ProductListComponent {}
+export class ProductListComponent {
+  showImage = false;
+}
